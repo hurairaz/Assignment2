@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Java CI Pipeline
 
 on:
   pull_request:
@@ -6,22 +6,29 @@ on:
       - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: macos-latest 
 
     steps:
+      
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v3
         with:
-          python-version: '3.x'
+          distribution: 'adopt' 
+          java-version: '8'     
 
-      - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
+      
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
 
-      - name: Run Unit Tests
-        run: |
-          pytest
+      
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      
+      - name: Run Tests
+        run: ./gradlew test
