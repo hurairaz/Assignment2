@@ -7,28 +7,23 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest 
+    runs-on: macos-latest
 
     steps:
-      
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt' 
-          java-version: '8'     
+          distribution: 'zulu' # Switch to the Zulu distribution
+          java-version: '8'    # Use Java 8
 
-      
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
-      
       - name: Build with Gradle
         run: ./gradlew build
 
-      
       - name: Run Tests
         run: ./gradlew test
