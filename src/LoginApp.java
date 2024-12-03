@@ -76,7 +76,7 @@ public class LoginApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        System.out.println("Abu Huraira");
         System.out.println("Testing GitHub Actions Workflow");
 
         SwingUtilities.invokeLater(() -> {
